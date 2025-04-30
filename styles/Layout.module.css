@@ -1,0 +1,15 @@
+/* Estilos para o componente Layout */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Adicione outros estilos conforme necessário */

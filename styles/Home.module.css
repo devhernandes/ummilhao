@@ -1,0 +1,40 @@
+/* Estilos básicos para a página inicial */
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.contentWrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.secondaryContainer {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    padding: 10px;
+  }
+
+  .contentWrapper,
+  .secondaryContainer {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
+/* Adicione outros estilos conforme necessário */

@@ -1,0 +1,140 @@
+/* styles/Navbar.module.css */
+.navbar {
+  background-color: #1a1a1a; /* Preto suave ou #000000 para preto puro */
+  padding: 0.8rem 1rem; /* Espaçamento interno */
+  color: #f0f0f0; /* Cor de texto principal (quase branco) */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra subtil */
+  position: sticky; /* Fixa a navbar no topo ao fazer scroll */
+  top: 0;
+  z-index: 1000; /* Garante que fica acima de outro conteúdo */
+  width: 100%;
+  margin: 0; /* Remove as margens para preencher a página inteira */
+}
+
+.navContainer {
+  max-width: 1200px; /* Limita a largura do conteúdo da navbar */
+  margin: 0; /* Remove as margens para o conteúdo também preencher a página inteira */
+  display: flex;
+  justify-content: space-between; /* Espaça o logo/título dos links */
+  align-items: center; /* Alinha verticalmente */
+  flex-wrap: wrap; /* Permite quebrar linha se necessário */
+}
+
+.navLogo {
+  color: #ffffff; /* Branco para o logo/título */
+  text-decoration: none;
+  font-size: 1.5rem; /* Tamanho do logo/título */
+  font-weight: bold;
+}
+.navLogo:hover {
+  color: #cccccc; /* Efeito hover subtil */
+}
+
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; /* Layout horizontal por padrão */
+  align-items: center;
+  gap: 1.5rem; /* Espaço entre os links */
+}
+
+.navList a {
+  color: #e0e0e0; /* Cor dos links (cinza claro) */
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0.2rem; /* Padding para área de clique */
+  position: relative; /* Para o efeito de sublinhado */
+  transition: color 0.3s ease;
+}
+
+/* Efeito hover simples */
+.navList a:hover {
+  color: #ffffff; /* Link fica branco no hover */
+}
+
+/* Efeito de sublinhado no hover (opcional) */
+/*
+.navList a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #ffffff;
+  transition: width 0.3s ease;
+}
+
+.navList a:hover::after {
+  width: 100%;
+}
+*/
+
+
+/* --- Estilos Mobile --- */
+.mobileMenuButton {
+  display: none; /* Escondido por padrão em telas grandes */
+  background: none;
+  border: none;
+  color: #f0f0f0;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.mobileMenuButton svg {
+    width: 28px; /* Tamanho do ícone */
+    height: 28px;
+}
+
+
+/* Media Query para mostrar o botão e esconder a lista em telas pequenas */
+@media (max-width: 768px) { /* Ponto de quebra - ajuste conforme necessário */
+  .mobileMenuButton {
+    display: block; /* Mostra o botão hamburger */
+  }
+
+  .navList {
+    display: none; /* Esconde a lista horizontal */
+    flex-direction: column; /* Empilha os links verticalmente */
+    width: 100%; /* Ocupa a largura toda */
+    position: absolute; /* Posiciona abaixo da navbar */
+    top: 100%; /* Começa logo abaixo da navbar */
+    left: 0;
+    background-color: #2a2a2a; /* Fundo ligeiramente diferente para o menu dropdown */
+    padding: 1rem 0; /* Espaçamento interno */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 0; /* Remove o gap horizontal */
+    text-align: center;
+  }
+
+  .navList.active {
+    display: flex; /* Mostra a lista quando o estado 'active' está presente */
+  }
+
+  .navList li {
+      width: 100%; /* Item da lista ocupa largura total */
+  }
+
+  .navList a {
+    display: block; /* Link ocupa a largura do item da lista */
+    padding: 0.8rem 1rem; /* Mais padding vertical para toque fácil */
+    width: 100%;
+    border-bottom: 1px solid #444; /* Linha separadora */
+  }
+   .navList li:last-child a {
+       border-bottom: none; /* Remove a borda do último item */
+   }
+
+  .navList a:hover {
+      background-color: #383838; /* Fundo no hover */
+  }
+
+  /* Esconder o efeito after no mobile se estiver a usar */
+  /*
+  .navList a::after {
+      display: none;
+  }
+  */
+}
