@@ -1,73 +1,38 @@
-"use client";
+"use client"
 
-import Head from 'next/head';
-import Layout from '../components/layout';
-import CallToAction from '../components/CallToAction';
-import { PixelGrid } from '../components/PixelGrid'; // Certifique-se de que o caminho e a tipagem estão corretos
-import AboutSection from '../components/AboutSection';
-import styles from '../styles/Home.module.css'; // Para estilos específicos da página
-import type { Pixel } from '../components/PixelGrid';
+import Image from "next/image"
+import { ChevronDown } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import ImageContainer from "@/components/image-container";
+import FirstContainer from "@/components/FirstContainer";
+import SecondContainer from "@/components/SecondContainer";
 
-import React, { useEffect, useState } from 'react';
-
-export default function HomePage() {
-  const [pixels, setPixels] = useState<Pixel[]>([]);
-  const [pixelsVendidos, setPixelsVendidos] = useState(0);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const resPixels = await fetch('/api/pixels');
-        const pixelData = await resPixels.json();
-        setPixels(pixelData);
-
-        const resStats = await fetch('/api/stats/pixels-vendidos');
-        const statsData = await resStats.json();
-        setPixelsVendidos(statsData.count);
-      } catch (error) {
-        console.error('Erro ao buscar dados:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <div>Carregando...</div>;
-  }
-
+export default function Home() {
   return (
-    <Layout>
-      <Head>
-        {/* 1. Título da Página (Browser Tab) */}
-        <title>Um Milhão de Pixels PT | O Seu Espaço na Web Portuguesa</title>
-        <meta name="description" content="Compre o seu pixel na web portuguesa. Deixe a sua marca e veja como este site foi construído com Node.js & Next.js!" />
-        {/* Add outras meta tags relevantes (Open Graph, etc.) */}
-      </Head>
+    <div className="min-h-screen bg-[#010314] text-white flex flex-col">
+      <Header />
 
-      <main className={styles.mainContent}>
-        {/* 4. Área de Conteúdo Principal */}
-        <div className={styles.contentWrapper}> {/* Container principal */}
+      <main className="container mx-auto px-4 flex-grow">
+        <section className="flex flex-col items-center justify-center min-h-[80vh] relative mb-16">
+          <ImageContainer
+            src="/placeholder.svg?height=600&width=600"
+            alt="Cofre digital 3D"
+            width={600}
+            height={600}
+            priority
+          />
+          <div className="absolute bottom-8 animate-bounce" onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}>
+            <ChevronDown className="w-8 h-8 text-white/70 cursor-pointer" />
+          </div>
+        </section>
 
-          {/* Secção da Grelha de Pixels */}
-          <PixelGrid pixels={pixels} />
-
-        </div>
-
-        {/* Container secundário */}
-        <div className={styles.secondaryContainer}> {/* Novo container */}
-
-          {/* Secção de Informação e CTA */}
-          <CallToAction pixelsVendidos={pixelsVendidos} totalPixels={1000000} />
-
-          {/* 5. Secção "Sobre o Projeto" */}
-          <AboutSection />
-
-        </div>
+        <FirstContainer />
+        <SecondContainer />
       </main>
-    </Layout>
+
+      <Footer />
+    </div>
   );
 }
